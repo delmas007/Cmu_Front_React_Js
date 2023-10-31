@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {AuthenticationContext, useAuthState} from "./Context/Context";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "./Components/Utilisateur/Login";
@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
           <Header/>
             <Routes>
-              <Route index path={"login"} element={<Login/>}></Route>
+              <Route index element={<Login/>}></Route>
               <Route path={"inscription"} element={<Inscription/>}></Route>
             </Routes>
           <Footer/>
