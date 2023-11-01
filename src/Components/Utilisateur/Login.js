@@ -1,11 +1,17 @@
+import {AuthenticationContext} from "../../Context/Context";
+import {useContext} from "react";
+import {useForm} from "react-hook-form";
 
 
 const Login = () => {
+    const [authState,setAuthState] = useContext(AuthenticationContext);
+    const {register,handleSubmit,formState:{errors}}
+        =useForm({defaultValues:{}})
     return (
         <div className="">
-            <div className="relative flex flex-col justify-center h-screen overflow-hidden">
+            <div className=" flex flex-col justify-center min-h-screen ">
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-md ring-2 ring-[#a5e194] lg:max-w-lg">
-                <h1 className="text-3xl font-semibold text-center text-[#a5e194]">DaisyUI</h1>
+                <h1 className="text-3xl font-semibold text-center text-[#a5e194]">Connexion</h1>
                 <form className="space-y-4">
                     <div>
                         <label className="label">

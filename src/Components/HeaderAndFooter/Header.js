@@ -49,7 +49,7 @@ export const Header = () => {
                         </div>
                     </NavbarItem>
                     <NavbarItem>
-                        <div className="flex flex-wrap gap-4 items-center">
+                        <div className="flex flex-wrap gap-4 items-center h-screen">
                             <Button className="text-slate-50" variant="light">
                                 Consultation
                             </Button>
