@@ -1,6 +1,8 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+// import './App.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+
 import {AuthenticationContext, useAuthState} from "./Context/Context";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "./Components/Utilisateur/Login";
@@ -12,7 +14,7 @@ function App() {
   const authState = useAuthState();
   return (
    <AuthenticationContext.Provider value={authState}>
-      <BrowserRouter>
+      <BrowserRouter vc>
           <Header/>
             <Routes>
               <Route index element={<Login/>}></Route>
