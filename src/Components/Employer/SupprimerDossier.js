@@ -7,3 +7,5 @@ const SupprimerDossier = () =>{
         </>
     )
 }
+
+export default SupprimerDossier;

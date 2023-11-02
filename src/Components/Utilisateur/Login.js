@@ -3,6 +3,8 @@ import {useContext} from "react";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {utilisateurApi} from "../../Api/ApiUtilisateur";
+import {jwtDecode} from "jwt-decode";
+
 
 
 const Login = () => {
@@ -12,12 +14,16 @@ const Login = () => {
     const navigate =useNavigate()
 
     const handleLogin = (dataForm)=>{
-        console.log(dataForm)
         utilisateurApi().connexionUtilisateur(dataForm.username,dataForm.password)
             .then( resp =>{
-                console.log(resp)
+                // console.log(resp.data.accessToken)
+                const decodedJWT = jwtDecode(resp.data.accessToken)
+                console.log(decodedJWT)
+                setAuthState({...authState, isAuthenticated:true, username: decodedJWT.sub, roles:decodedJWT.scope, token : resp.data.accessToken});
+                console.log(authState)
                 }
             ).catch(err=>{
+            console.log(authState)
                 console.log(err)
         })
     }
@@ -25,6 +31,14 @@ const Login = () => {
         <div className="">
             <div className=" flex flex-col justify-center min-h-screen ">
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-md ring-2 ring-[#a5e194] lg:max-w-lg">
+                {
+                    authState && !(authState.isAuthenticated) && authState.errorMessage
+                    && (
+                        <div className={"alert alert-danger"}>
+                            {authState.errorMessage}
+                        </div>
+                    )
+                }
                 <h1 className="text-3xl font-semibold text-center text-[#a5e194]">Connexion</h1>
                 <form className="space-y-4" onSubmit={handleSubmit(handleLogin)}>
                     <div>
