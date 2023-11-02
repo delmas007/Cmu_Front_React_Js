@@ -8,11 +8,18 @@ import {utilisateurApi} from "../../Api/ApiUtilisateur";
 const Login = () => {
     const [authState,setAuthState] = useContext(AuthenticationContext);
     const {register,handleSubmit,formState:{errors}}
-        =useForm({defaultValues:{id:"",password:""}})
+        =useForm({defaultValues:{username:"",password:""}})
     const navigate =useNavigate()
 
     const handleLogin = (dataForm)=>{
-        utilisateurApi().connexionUtilisateur()
+        console.log(dataForm)
+        utilisateurApi().connexionUtilisateur(dataForm.username,dataForm.password)
+            .then( resp =>{
+                console.log(resp)
+                }
+            ).catch(err=>{
+                console.log(err)
+        })
     }
     return (
         <div className="">
@@ -25,9 +32,9 @@ const Login = () => {
                             <span className="text-base text-[#a5e194] label-text">Username</span>
                         </label>
                         <input type="text" placeholder="Email Address" className="w-full bg-[#a5e194] input input-bordered"
-                               {...register("id",{required:'username est obligatoire'})}
+                               {...register("username",{required:'username est obligatoire'})}
                         />
-                        <span className={"text-danger"}>{errors.id?.message}</span>
+                        <span className={"text-danger"}>{errors.username?.message}</span>
                     </div>
                     <div>
                         <label className="label">
