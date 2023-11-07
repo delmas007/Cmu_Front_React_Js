@@ -1,5 +1,3 @@
-
-
 const SupprimerDossier = () =>{
     return (
         <>
@@ -7,3 +5,5 @@ const SupprimerDossier = () =>{
         </>
     )
 }
+
+export default SupprimerDossier;
