@@ -12,6 +12,8 @@ import ModifierDossier from "./Components/Medecin/ModifierDossier";
 import {Consultation} from "./Components/Patient/Consultation";
 import CreeDossier from "./Components/Employer/CreeDossier";
 import MenuEmployer from "./Components/Employer/MenuEmployer";
+import MenuMedecin from "./Components/Medecin/MenuMedecin";
+import MenuPatient from "./Components/Patient/MenuPatient";
 
 function App() {
     const authState = useAuthState();
@@ -29,12 +31,14 @@ function App() {
                     </Route>
 
                     <Route path={"medecin/"}>
+                        <Route path={"menuMedecin"} element={<MenuMedecin/>}></Route>
                         <Route path={"consulterDossier"} element={<CreeDossier/>}></Route>
                         <Route path={"faireConsultation"} element={<FaireConsultation/>}></Route>
                         <Route path={"modifierDossier"} element={<ModifierDossier/>}></Route>
                     </Route>
 
                     <Route path={"patient/"}>
+                        <Route path={"menuPatient"} element={<MenuPatient/>}></Route>
                         <Route path={"consultation/:numCmu"} element={<Consultation/>}></Route>
                     </Route>
                 </Routes>
