@@ -15,20 +15,19 @@ const Login = () => {
         utilisateurApi().connexionUtilisateur(dataForm.username,dataForm.password)
             .then( resp =>{
                     // console.log(resp.data.accessToken)
-                    const decodedJWT = jwtDecode(resp.data.accessToken)
-                    console.log(decodedJWT)
+                    const decodedJWT = jwtDecode(resp.data.accessToken);
+                    console.log(decodedJWT);
                     setAuthState({...authState, isAuthenticated:true, username: decodedJWT.sub, roles:decodedJWT.scope, token : resp.data.accessToken});
-                    if(authState.roles === "EMPLOYER"){
-
+                console.log(authState);
+                    if(authState.roles === "MEDECIN"){
+                        navigate("medecin/menuMedecin");
                     }
                     else if(authState.roles === "EMPLOYER"){
-
+                        navigate("employer/menuEmployer");
                     }
-                    else {
-
+                    else if(authState.roles === "PATIENT") {
+                        navigate("patient/menuPatient");
                     }
-                    navigate("employer/creeDossie")
-                    console.log(authState)
                 }
             ).catch(err=>{
             console.log(authState)

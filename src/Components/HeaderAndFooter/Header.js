@@ -1,11 +1,28 @@
 
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@nextui-org/react";
-
+import {AuthenticationContext} from "../../Context/Context";
+import {useContext} from "react";
+import {useLocation} from "react-router-dom";
 
 
 
 export const Header = () => {
+    const [authState, setAuthState]= useContext(AuthenticationContext);
+    const location=useLocation();
+
+    function handleLogout(){
+        setAuthState(
+            {
+                ...authState,
+                isAuthenticated:false,
+                user:undefined,
+                token : undefined
+
+            });
+        location("/login");
+    }
     return (
+
         <>
             <Navbar className="bg-[#a5e194] relative pt-3 ">
                 <NavbarBrand >
@@ -59,10 +76,11 @@ export const Header = () => {
                 <NavbarContent justify="end">
                     <NavbarItem>
                         <Button  className={"text-slate-50"} href="#" variant="flat">
-                            Sign Up
+                            Deconnexion
                         </Button>
                     </NavbarItem>
                 </NavbarContent>
+
             </Navbar>
 
         </>

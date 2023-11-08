@@ -17,13 +17,14 @@ import MenuPatient from "./Components/Patient/MenuPatient";
 
 function App() {
     const authState = useAuthState();
+    const [state, setState] = authState;
     return (
         <AuthenticationContext.Provider value={authState}>
             <BrowserRouter>
-                <Header/>
+                {state.isAuthenticated && (<Header/>)}
                 <Routes>
                     <Route index element={<Login/>}></Route>
-
+                    <Route path={"login"} element={<Login/>}></Route>
                     <Route path={"employer/"}>
                         <Route path={"menuEmployer"} element={<MenuEmployer/>}></Route>
                         <Route path={"creeDossie"} element={<CreeDossier/>}></Route>
