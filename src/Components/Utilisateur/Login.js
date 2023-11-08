@@ -18,6 +18,15 @@ const Login = () => {
                     const decodedJWT = jwtDecode(resp.data.accessToken)
                     console.log(decodedJWT)
                     setAuthState({...authState, isAuthenticated:true, username: decodedJWT.sub, roles:decodedJWT.scope, token : resp.data.accessToken});
+                    if(authState.roles === "EMPLOYER"){
+
+                    }
+                    else if(authState.roles === "EMPLOYER"){
+
+                    }
+                    else {
+
+                    }
                     navigate("employer/creeDossie")
                     console.log(authState)
                 }

@@ -33,7 +33,7 @@ function App() {
                     </Route>
 
                     <Route path={"patient/"}>
-                        <Route path={"consultation"} element={<Consultation/>}></Route>
+                        <Route path={"consultation/:numCmu"} element={<Consultation/>}></Route>
                     </Route>
                 </Routes>
                 <Footer/>
