@@ -1,13 +1,5 @@
-
-
-const creeDossier  = () => {
+export const CreeDossier = () => {
     return (
-        <>
-            <div>
-                creeDossier
-            </div>
-        </>
+        <>CreeDossier</>
     )
 }
-
-export default creeDossier()

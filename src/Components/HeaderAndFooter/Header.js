@@ -1,46 +1,69 @@
-import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSignOutAlt, faUserDoctor} from "@fortawesome/free-solid-svg-icons";
+
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@nextui-org/react";
+
 
 
 
 export const Header = () => {
     return (
         <>
-            <nav className=" navbar navbar-expand-lg bg-light py-3 ">
-                <div className="container-fluid">
-                    <Link className="navbar-brand ms-2" to={"#"}>
-                        <FontAwesomeIcon icon={faUserDoctor} style={{color: "#198754",height:"80 px",width:"80"}} />
-                    </Link>
-                    <button className="navbar-toggler" type="button"  data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <Link className=" btn btn-outline-success mx-2 " aria-current="page" to={"#"}>Consultation</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className=" btn btn-outline-success mx-2  " aria-current="page" to={"#"}>Dossier patient</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className=" btn btn-outline-success mx-2 " aria-current="page" to={"#"}>Voir dossier patient</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className=" btn btn-outline-success mx-2 " aria-current="page" to={"#"}>Ajouter dossier</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className=" btn btn-outline-success  " aria-current="page" to={"#"}>Modifier dossier</Link>
-                            </li>
-                        </ul>
-                        <Link className="icon-link me-5" to={"#"} >
-                            <FontAwesomeIcon icon={faSignOutAlt} style={{color: "#1f5142",}} />
-                        </Link>
-                    </div>
-                </div>
-            </nav>
+            <Navbar className="bg-[#a5e194] relative pt-3 ">
+                <NavbarBrand >
+                    <svg className="h-8 w-8 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"/>
+                        <line x1="3" y1="21" x2="21" y2="21"/>
+                        <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16"/>
+                        <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4"/>
+                        <line x1="10" y1="9" x2="14" y2="9"/>
+                        <line x1="12" y1="7" x2="12" y2="11"/>
+                    </svg>
+                </NavbarBrand>
+                <NavbarContent className="hidden sm:flex gap-4" justify="center">
+                    <NavbarItem>
+                        <div className="flex flex-wrap gap-4 items-center">
+                            <Button className="text-slate-50"  variant="light ">
+                                Dossier patient
+                            </Button>
+                        </div>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <div className="flex flex-wrap gap-4 items-center">
+                            <Button className="text-slate-50" variant="light">
+                                Voir dossier patient
+                            </Button>
+                        </div>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <div className="flex flex-wrap gap-4 items-center">
+                            <Button className="text-slate-50" variant="light">
+                                Ajouter dossier
+                            </Button>
+                        </div>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <div className="flex flex-wrap gap-4 items-center">
+                            <Button className="text-slate-50" variant="light">
+                                Modifier dossier
+                            </Button>
+                        </div>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <div className="flex flex-wrap gap-4 items-center h-screen">
+                            <Button className="text-slate-50" variant="light">
+                                Consultation
+                            </Button>
+                        </div>
+                    </NavbarItem>
+                </NavbarContent>
+                <NavbarContent justify="end">
+                    <NavbarItem>
+                        <Button  className={"text-slate-50"} href="#" variant="flat">
+                            Sign Up
+                        </Button>
+                    </NavbarItem>
+                </NavbarContent>
+            </Navbar>
 
         </>
     )
