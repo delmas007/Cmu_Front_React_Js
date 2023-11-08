@@ -21,7 +21,7 @@ function App() {
     return (
         <AuthenticationContext.Provider value={authState}>
             <BrowserRouter>
-                {state.isAuthenticated && (<Header/>)}
+                <Header/>
                 <Routes>
                     <Route index element={<Login/>}></Route>
                     <Route path={"login"} element={<Login/>}></Route>

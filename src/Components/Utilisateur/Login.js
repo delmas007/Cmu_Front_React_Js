@@ -14,11 +14,10 @@ const Login = () => {
     const handleLogin = (dataForm)=>{
         utilisateurApi().connexionUtilisateur(dataForm.username,dataForm.password)
             .then( resp =>{
-                    // console.log(resp.data.accessToken)
                     const decodedJWT = jwtDecode(resp.data.accessToken);
                     console.log(decodedJWT);
                     setAuthState({...authState, isAuthenticated:true, username: decodedJWT.sub, roles:decodedJWT.scope, token : resp.data.accessToken});
-                console.log(authState);
+                    console.log(authState);
                     if(authState.roles === "MEDECIN"){
                         navigate("medecin/menuMedecin");
                     }
@@ -35,8 +34,8 @@ const Login = () => {
         })
     }
     return (
-        <div className="">
-            <div className=" flex flex-col justify-center min-h-screen ">
+        <div className="my-[237px]">
+            <div className=" flex flex-col justify-center  ">
                 <div className="w-full p-6 m-auto bg-white rounded-md shadow-md ring-2 ring-[#a5e194] lg:max-w-lg">
                     {
                         authState && !(authState.isAuthenticated) && authState.errorMessage
@@ -68,7 +67,7 @@ const Login = () => {
                             <span className={"text-danger"}>{errors.password?.message}</span>
                         </div>
                         <div>
-                            <button className="btn btn-block border-[#a5e194] text-[#a5e194]  mt-5" style={{backgroundColor:"#a5e194",borderColor:"#a5e194"}}>Login</button>
+                            <button className="btn btn-block border-[#a5e194] text-white  mt-5" style={{backgroundColor:"#a5e194",borderColor:"#a5e194"}}>Login</button>
                         </div>
                     </form>
                 </div>
