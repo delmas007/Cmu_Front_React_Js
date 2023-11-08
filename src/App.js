@@ -7,10 +7,10 @@ import Login from "./Components/Utilisateur/Login";
 import {Header} from "./Components/HeaderAndFooter/Header";
 import {Footer} from "./Components/HeaderAndFooter/Footer";
 import SupprimerDossier from "./Components/Employer/SupprimerDossier";
-import {CreeDossier} from "./Components/Employer/CreeDossier";
 import {FaireConsultation} from "./Components/Medecin/FaireConsultation";
 import ModifierDossier from "./Components/Medecin/ModifierDossier";
 import {Consultation} from "./Components/Patient/Consultation";
+import CreeDossier from "./Components/Employer/CreeDossier";
 
 function App() {
     const authState = useAuthState();
@@ -21,20 +21,20 @@ function App() {
                 <Routes>
                     <Route index element={<Login/>}></Route>
 
-                    {/*<Route path={"employer"}>*/}
-                    <Route path={"/creeDossier"} element={<CreeDossier/>}></Route>
-                    <Route path={"/supprimer"} element={<SupprimerDossier/>}></Route>
-                    {/*</Route>*/}
+                    <Route path={"employer/"}>
+                        <Route path={"creeDossie"} element={<CreeDossier/>}></Route>
+                        <Route path={"supprimer"} element={<SupprimerDossier/>}></Route>
+                    </Route>
 
-                    {/*<Route path={"medecin"}>*/}
-                    <Route path={"/consulterDossier"} element={<CreeDossier/>}></Route>
-                    <Route path={"/faireConsultation"} element={<FaireConsultation/>}></Route>
-                    <Route path={"/modifierDossier"} element={<ModifierDossier/>}></Route>
-                    {/*</Route>*/}
+                    <Route path={"medecin/"}>
+                        <Route path={"consulterDossier"} element={<CreeDossier/>}></Route>
+                        <Route path={"faireConsultation"} element={<FaireConsultation/>}></Route>
+                        <Route path={"modifierDossier"} element={<ModifierDossier/>}></Route>
+                    </Route>
 
-                    {/*<Route path={"patient"}>*/}
-                    <Route path={"/consultation"} element={<Consultation/>}></Route>
-                    {/*</Route>*/}
+                    <Route path={"patient/"}>
+                        <Route path={"consultation"} element={<Consultation/>}></Route>
+                    </Route>
                 </Routes>
                 <Footer/>
             </BrowserRouter>

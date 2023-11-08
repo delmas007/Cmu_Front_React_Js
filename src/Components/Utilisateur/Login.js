@@ -1,7 +1,7 @@
 import {AuthenticationContext} from "../../Context/Context";
 import {useContext} from "react";
 import {useForm} from "react-hook-form";
-//import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {utilisateurApi} from "../../Api/ApiUtilisateur";
 import {jwtDecode} from "jwt-decode";
 
@@ -9,7 +9,7 @@ const Login = () => {
     const [authState,setAuthState] = useContext(AuthenticationContext);
     const {register,handleSubmit,formState:{errors}}
         =useForm({defaultValues:{username:"",password:""}})
-    //const navigate =useNavigate()
+    const navigate =useNavigate()
 
     const handleLogin = (dataForm)=>{
         utilisateurApi().connexionUtilisateur(dataForm.username,dataForm.password)
@@ -18,6 +18,7 @@ const Login = () => {
                     const decodedJWT = jwtDecode(resp.data.accessToken)
                     console.log(decodedJWT)
                     setAuthState({...authState, isAuthenticated:true, username: decodedJWT.sub, roles:decodedJWT.scope, token : resp.data.accessToken});
+                    navigate("employer/creeDossie")
                     console.log(authState)
                 }
             ).catch(err=>{

@@ -6,6 +6,6 @@ module.exports = {
     extend: {},
   },
   darkMode: "class",
-  plugins: [require("daisyui"),nextui()],
+  plugins: [require("daisyui"),nextui(),'@tailwindcss/forms'],
 }
 
