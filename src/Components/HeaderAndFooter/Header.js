@@ -2,7 +2,7 @@
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@nextui-org/react";
 import {AuthenticationContext} from "../../Context/Context";
 import {useContext} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 
 
@@ -42,35 +42,35 @@ export const Header = () => {
                     <NavbarItem>
                         <div className="flex flex-wrap gap-4 items-center">
                             <Button className="text-slate-50"  variant="light ">
-                                Dossier patient
+                               <Link to={"/medecin/consulterDossier"} className="no-underline text-slate-50" >Dossier patient</Link>
                             </Button>
                         </div>
                     </NavbarItem>
                     <NavbarItem>
                         <div className="flex flex-wrap gap-4 items-center">
                             <Button className="text-slate-50" variant="light">
-                                Voir dossier patient
+                                <Link to={"/employer/creeDossie"} className="no-underline text-slate-50" >Ajouter dossier</Link>
                             </Button>
                         </div>
                     </NavbarItem>
                     <NavbarItem>
                         <div className="flex flex-wrap gap-4 items-center">
                             <Button className="text-slate-50" variant="light">
-                                Ajouter dossier
-                            </Button>
-                        </div>
-                    </NavbarItem>
-                    <NavbarItem>
-                        <div className="flex flex-wrap gap-4 items-center">
-                            <Button className="text-slate-50" variant="light">
-                                Modifier dossier
+                                <Link to={"/medecin/modifierDossier"} className="no-underline text-slate-50" >Modifier dossier</Link>
                             </Button>
                         </div>
                     </NavbarItem>
                     <NavbarItem>
                         <div className="flex flex-wrap gap-4 items-center h-screen">
                             <Button className="text-slate-50" variant="light">
-                                Consultation
+                                <Link to={"/medecin/faireConsultation"} className="no-underline text-slate-50" >Consultation</Link>
+                            </Button>
+                        </div>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <div className="flex flex-wrap gap-4 items-center h-screen">
+                            <Button className="text-slate-50" variant="light">
+                                <Link to={"/employer/supprimer"} className="no-underline text-slate-50" >Supprimer</Link>
                             </Button>
                         </div>
                     </NavbarItem>
