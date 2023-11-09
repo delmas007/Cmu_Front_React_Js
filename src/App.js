@@ -15,6 +15,9 @@ import MenuEmployer from "./Components/Employer/MenuEmployer";
 import MenuMedecin from "./Components/Medecin/MenuMedecin";
 import MenuPatient from "./Components/Patient/MenuPatient";
 import ConsulterDossier from "./Components/Medecin/ConsulterDossier";
+import NotAuthorized from "./Components/protected/NotAuthorized";
+import ProtectedRoute from "./Components/protected/ProtectedRoute";
+import ProtectedByRoleRoute from "./Components/protected/ProtectedByRoleRoute";
 
 function App() {
     const authState = useAuthState();
@@ -25,23 +28,68 @@ function App() {
                 <Routes>
                     <Route index element={<Login />} />
                     <Route path="login" element={<Login />} />
+
+                    <Route path={"notAuthorized"} element={
+                        <ProtectedRoute>
+                            <NotAuthorized></NotAuthorized>
+                        </ProtectedRoute>
+                    }>
+                    </Route>
+
                     <Route path="/employer/">
-                        <Route path="menuEmployer" exact element={<MenuEmployer />} />
-                        <Route path="creeDossie" element={<CreeDossier />} />
-                        <Route path="supprimer" element={<SupprimerDossier />} />
+                        <Route path="menuEmployer" element={
+                            <ProtectedByRoleRoute role={"EMPLOYER"}>
+                                <MenuEmployer />
+                            </ProtectedByRoleRoute>
+                        } />
+                        <Route path="creeDossie" element={
+                            <ProtectedByRoleRoute role={"EMPLOYER"}>
+                                <CreeDossier />
+                            </ProtectedByRoleRoute>
+                            } />
+                        <Route path="supprimer" element={
+                            <ProtectedByRoleRoute role={"EMPLOYER"}>
+                                <SupprimerDossier />
+                            </ProtectedByRoleRoute>
+                        } />
                     </Route>
 
                     <Route path="/medecin/">
-                        <Route path="menuMedecin" element={<MenuMedecin />} />
-                        <Route path="consulterDossier" element={<ConsulterDossier/>} />
-                        <Route path="faireConsultation" element={<FaireConsultation />} />
-                        <Route path="modifierDossier" element={<ModifierDossier />} />
+                        <Route path="menuMedecin" element={
+                            <ProtectedByRoleRoute role={"MEDECIN"}>
+                                <MenuMedecin />
+                            </ProtectedByRoleRoute>
+                        } />
+                        <Route path="consulterDossier" element={
+                            <ProtectedByRoleRoute role={"MEDECIN"}>
+                                <ConsulterDossier />
+                            </ProtectedByRoleRoute>
+                        } />
+                        <Route path="faireConsultation" element={
+                            <ProtectedByRoleRoute role={"MEDECIN"}>
+                                <FaireConsultation />
+                            </ProtectedByRoleRoute>
+                        } />
+                        <Route path="modifierDossier" element={
+                            <ProtectedByRoleRoute role={"MEDECIN"}>
+                                <ModifierDossier />
+                            </ProtectedByRoleRoute>
+                        } />
                     </Route>
 
                     <Route path="/patient/">
-                        <Route path="menuPatient" element={<MenuPatient />} />
-                        <Route path="consultation/:numCmu" element={<Consultation />} />
+                        <Route path="menuPatient" element={
+                            <ProtectedByRoleRoute role={"MEDECIN"}>
+                                <MenuPatient />
+                            </ProtectedByRoleRoute>
+                        } />
+                        <Route path="consultation/:numCmu" element={
+                            <ProtectedByRoleRoute role={"MEDECIN"}>
+                                <Consultation />
+                            </ProtectedByRoleRoute>
+                        } />
                     </Route>
+
                 </Routes>
                 <FooterControl />
 
