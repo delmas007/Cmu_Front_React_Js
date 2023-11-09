@@ -22,27 +22,28 @@ function App() {
             <BrowserRouter>
                 <HeaderControl />
                 <Routes>
-                    <Route index element={<Login/>}></Route>
-                    <Route path={"login"} element={<Login/>}></Route>
-                    <Route path={"employer/"}>
-                        <Route path={"menuEmployer"} element={<MenuEmployer/>}></Route>
-                        <Route path={"creeDossie"} element={<CreeDossier/>}></Route>
-                        <Route path={"supprimer"} element={<SupprimerDossier/>}></Route>
+                    <Route index element={<Login />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="/employer/">
+                        <Route path="menuEmployer" exact element={<MenuEmployer />} />
+                        <Route path="creeDossie" element={<CreeDossier />} />
+                        <Route path="supprimer" element={<SupprimerDossier />} />
                     </Route>
 
-                    <Route path={"medecin/"}>
-                        <Route path={"menuMedecin"} element={<MenuMedecin/>}></Route>
-                        <Route path={"consulterDossier"} element={<CreeDossier/>}></Route>
-                        <Route path={"faireConsultation"} element={<FaireConsultation/>}></Route>
-                        <Route path={"modifierDossier"} element={<ModifierDossier/>}></Route>
+                    <Route path="/medecin/">
+                        <Route path="menuMedecin" element={<MenuMedecin />} />
+                        <Route path="consulterDossier" element={<CreeDossier />} />
+                        <Route path="faireConsultation" element={<FaireConsultation />} />
+                        <Route path="modifierDossier" element={<ModifierDossier />} />
                     </Route>
 
-                    <Route path={"patient/"}>
-                        <Route path={"menuPatient"} element={<MenuPatient/>}></Route>
-                        <Route path={"consultation/:numCmu"} element={<Consultation/>}></Route>
+                    <Route path="/patient/">
+                        <Route path="menuPatient" element={<MenuPatient />} />
+                        <Route path="consultation/:numCmu" element={<Consultation />} />
                     </Route>
                 </Routes>
-                <FooterControl/>
+                <FooterControl />
+
             </BrowserRouter>
         </AuthenticationContext.Provider>
     );

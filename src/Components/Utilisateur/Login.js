@@ -16,7 +16,6 @@ const Login = () => {
             .connexionUtilisateur(dataForm.username, dataForm.password)
             .then((resp) => {
                 const decodedJWT = jwtDecode(resp.data.accessToken);
-                console.log(decodedJWT);
 
                 const updatedAuthState = {
                     ...authState,
@@ -28,14 +27,12 @@ const Login = () => {
 
                 setAuthState(updatedAuthState);
 
-                console.log(updatedAuthState);
-
                 if (updatedAuthState.roles === "MEDECIN") {
-                    navigate("medecin/menuMedecin");
+                    navigate("/medecin/menuMedecin");
                 } else if (updatedAuthState.roles === "EMPLOYER") {
-                    navigate("employer/menuEmployer");
+                    navigate("/employer/menuEmployer");
                 } else if (updatedAuthState.roles === "PATIENT") {
-                    navigate("patient/menuPatient");
+                    navigate("/patient/menuPatient");
                 }
             })
             .catch((err) => {
@@ -43,6 +40,7 @@ const Login = () => {
                 console.log(err);
             });
     };
+
 
     return (
         <div className="my-[237px]">
