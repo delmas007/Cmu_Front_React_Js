@@ -13,6 +13,7 @@ export function useHttpClient(token){
         console.log("**** request intercept *****");
         console.log(request);
         request.headers.Authorization=`Bearer ${token};`
+        console.log(request.headers)
         return request;
     },(err)=>{
         console.log(err);

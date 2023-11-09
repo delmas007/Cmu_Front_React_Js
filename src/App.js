@@ -79,12 +79,12 @@ function App() {
 
                     <Route path="/patient/">
                         <Route path="menuPatient" element={
-                            <ProtectedByRoleRoute role={"MEDECIN"}>
+                            <ProtectedByRoleRoute role={"PATIENT"}>
                                 <MenuPatient />
                             </ProtectedByRoleRoute>
                         } />
                         <Route path="consultation/:numCmu" element={
-                            <ProtectedByRoleRoute role={"MEDECIN"}>
+                            <ProtectedByRoleRoute role={"PATIENT"}>
                                 <Consultation />
                             </ProtectedByRoleRoute>
                         } />

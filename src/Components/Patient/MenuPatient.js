@@ -1,4 +1,11 @@
+import {useContext, useEffect} from "react";
+import {AuthenticationContext} from "../../Context/Context";
+
 const MenuPatient = () => {
+    const [authState]= useContext(AuthenticationContext);
+    useEffect(()=>{
+        console.log(authState)
+    })
     return (
         <div className={" fex flex-col mb-[518px]"}>
             <div className={" flex justify-center"}>

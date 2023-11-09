@@ -2,13 +2,14 @@
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@nextui-org/react";
 import {AuthenticationContext} from "../../Context/Context";
 import {useContext} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate,useLocation} from "react-router-dom";
 
 
 
 export const Header = () => {
     const [authState, setAuthState]= useContext(AuthenticationContext);
     const navigate = useNavigate()
+    const location = useLocation();
 
 
     const handleLogout = ()=>{
@@ -88,11 +89,21 @@ export const Header = () => {
                     }
                 </NavbarContent>
                 <NavbarContent justify="end">
-                    <NavbarItem>
-                        <Button  className={"text-slate-50"} onClick={handleLogout}  variant="flat">
-                            Déconnexion
-                        </Button>
-                    </NavbarItem>
+                    {location.pathname === '/notAuthorized' ?
+                        <NavbarItem>
+                            <Button  className={"text-slate-50"} onClick={handleLogout}  variant="flat">
+                                Connexion
+                            </Button>
+                        </NavbarItem>
+                        :
+                        <NavbarItem>
+                            <Button  className={"text-slate-50"} onClick={handleLogout}  variant="flat">
+                                Déconnexion
+                            </Button>
+                        </NavbarItem>
+                    }
+
+
                 </NavbarContent>
 
             </Navbar>
