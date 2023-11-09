@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {AuthenticationContext, useAuthState} from "./Context/Context";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useLocation} from "react-router-dom";
 import Login from "./Components/Utilisateur/Login";
 import {Header} from "./Components/HeaderAndFooter/Header";
 import {Footer} from "./Components/HeaderAndFooter/Footer";
@@ -17,11 +17,10 @@ import MenuPatient from "./Components/Patient/MenuPatient";
 
 function App() {
     const authState = useAuthState();
-    const [state, setState] = authState;
     return (
         <AuthenticationContext.Provider value={authState}>
             <BrowserRouter>
-                <Header/>
+                <HeaderControl />
                 <Routes>
                     <Route index element={<Login/>}></Route>
                     <Route path={"login"} element={<Login/>}></Route>
@@ -43,9 +42,24 @@ function App() {
                         <Route path={"consultation/:numCmu"} element={<Consultation/>}></Route>
                     </Route>
                 </Routes>
-                <Footer/>
+                <FooterControl/>
             </BrowserRouter>
         </AuthenticationContext.Provider>
     );
 }
+function HeaderControl() {
+    const location = useLocation();
+    const hideHeaderOnRoutes = ['/', '/login'];
+    const shouldHideHeader = hideHeaderOnRoutes.includes(location.pathname);
+
+    return shouldHideHeader ? null : <Header />;
+}
+function FooterControl() {
+    const location = useLocation();
+    const hideHeaderOnRoutes = ['/', '/login'];
+    const shouldHideHeader = hideHeaderOnRoutes.includes(location.pathname);
+
+    return shouldHideHeader ? null : <Footer />;
+}
+
     export default App;

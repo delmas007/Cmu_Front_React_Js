@@ -11,28 +11,39 @@ const Login = () => {
         =useForm({defaultValues:{username:"",password:""}})
     const navigate =useNavigate()
 
-    const handleLogin = (dataForm)=>{
-        utilisateurApi().connexionUtilisateur(dataForm.username,dataForm.password)
-            .then( resp =>{
-                    const decodedJWT = jwtDecode(resp.data.accessToken);
-                    console.log(decodedJWT);
-                    setAuthState({...authState, isAuthenticated:true, username: decodedJWT.sub, roles:decodedJWT.scope, token : resp.data.accessToken});
-                    console.log(authState);
-                    if(authState.roles === "MEDECIN"){
-                        navigate("medecin/menuMedecin");
-                    }
-                    else if(authState.roles === "EMPLOYER"){
-                        navigate("employer/menuEmployer");
-                    }
-                    else if(authState.roles === "PATIENT") {
-                        navigate("patient/menuPatient");
-                    }
+    const handleLogin = (dataForm) => {
+        utilisateurApi()
+            .connexionUtilisateur(dataForm.username, dataForm.password)
+            .then((resp) => {
+                const decodedJWT = jwtDecode(resp.data.accessToken);
+                console.log(decodedJWT);
+
+                const updatedAuthState = {
+                    ...authState,
+                    isAuthenticated: true,
+                    username: decodedJWT.sub,
+                    roles: decodedJWT.scope,
+                    token: resp.data.accessToken,
+                };
+
+                setAuthState(updatedAuthState);
+
+                console.log(updatedAuthState);
+
+                if (updatedAuthState.roles === "MEDECIN") {
+                    navigate("medecin/menuMedecin");
+                } else if (updatedAuthState.roles === "EMPLOYER") {
+                    navigate("employer/menuEmployer");
+                } else if (updatedAuthState.roles === "PATIENT") {
+                    navigate("patient/menuPatient");
                 }
-            ).catch(err=>{
-            console.log(authState)
-            console.log(err)
-        })
-    }
+            })
+            .catch((err) => {
+                console.log(authState);
+                console.log(err);
+            });
+    };
+
     return (
         <div className="my-[237px]">
             <div className=" flex flex-col justify-center  ">
