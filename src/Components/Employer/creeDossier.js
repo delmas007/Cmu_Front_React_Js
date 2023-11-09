@@ -19,19 +19,19 @@ const CreeDossier = () => {
                         <div className="form-control">
                             <label className="label cursor-pointer">
                                 <span className="label-text">Homme</span>
-                                <input type="radio" name="radio-10" className="radio checked:bg-[#a5e194]" checked />
+                                <input type="radio" name="radio-10" className="radio checked:bg-[#a5e194]" defaultChecked={true} />
                             </label>
                         </div>
                         <div className="form-control">
                             <label className="label cursor-pointer">
                                 <span className="label-text">Femme</span>
-                                <input type="radio" name="radio-10" className="radio checked:bg-[#a5e194]" checked />
+                                <input type="radio" name="radio-10" className="radio checked:bg-[#a5e194]"  />
                             </label>
                         </div>
                         <div className="form-control">
                             <label className="label cursor-pointer">
                                 <span className="label-text">Femme enceinte</span>
-                                <input type="radio" name="radio-10" className="radio checked:bg-[#a5e194]" checked />
+                                <input type="radio" name="radio-10" className="radio checked:bg-[#a5e194]"  />
                             </label>
                         </div>
 

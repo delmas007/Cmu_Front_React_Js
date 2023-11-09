@@ -10,6 +10,7 @@ export const Header = () => {
     const [authState, setAuthState]= useContext(AuthenticationContext);
     const navigate = useNavigate()
 
+
     const handleLogout = ()=>{
         setAuthState(
             {
@@ -23,6 +24,7 @@ export const Header = () => {
             })
         navigate("login")
     }
+
     return (
 
         <>
@@ -39,41 +41,51 @@ export const Header = () => {
                     </svg>
                 </NavbarBrand>
                 <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                    <NavbarItem>
+                    {authState.roles === "MEDECIN" &&
+                        <NavbarItem>
                         <div className="flex flex-wrap gap-4 items-center">
                             <Button className="text-slate-50"  variant="light ">
-                               <Link to={"/medecin/consulterDossier"} className="no-underline text-slate-50" >Dossier patient</Link>
+                                <Link to={"/medecin/consulterDossier"} className="no-underline text-slate-50" >Dossier patient</Link>
                             </Button>
                         </div>
                     </NavbarItem>
-                    <NavbarItem>
-                        <div className="flex flex-wrap gap-4 items-center">
-                            <Button className="text-slate-50" variant="light">
-                                <Link to={"/employer/creeDossie"} className="no-underline text-slate-50" >Ajouter dossier</Link>
-                            </Button>
-                        </div>
-                    </NavbarItem>
-                    <NavbarItem>
-                        <div className="flex flex-wrap gap-4 items-center">
-                            <Button className="text-slate-50" variant="light">
-                                <Link to={"/medecin/modifierDossier"} className="no-underline text-slate-50" >Modifier dossier</Link>
-                            </Button>
-                        </div>
-                    </NavbarItem>
-                    <NavbarItem>
-                        <div className="flex flex-wrap gap-4 items-center h-screen">
-                            <Button className="text-slate-50" variant="light">
-                                <Link to={"/medecin/faireConsultation"} className="no-underline text-slate-50" >Consultation</Link>
-                            </Button>
-                        </div>
-                    </NavbarItem>
-                    <NavbarItem>
-                        <div className="flex flex-wrap gap-4 items-center h-screen">
-                            <Button className="text-slate-50" variant="light">
-                                <Link to={"/employer/supprimer"} className="no-underline text-slate-50" >Supprimer</Link>
-                            </Button>
-                        </div>
-                    </NavbarItem>
+                    }
+                    {authState.roles === "MEDECIN" &&
+                        <NavbarItem>
+                            <div className="flex flex-wrap gap-4 items-center">
+                                <Button className="text-slate-50" variant="light">
+                                    <Link to={"/medecin/modifierDossier"} className="no-underline text-slate-50" >Modifier dossier</Link>
+                                </Button>
+                            </div>
+                        </NavbarItem>
+                    }
+                    {authState.roles === "MEDECIN" &&
+                        <NavbarItem>
+                            <div className="flex flex-wrap gap-4 items-center h-screen">
+                                <Button className="text-slate-50" variant="light">
+                                    <Link to={"/medecin/faireConsultation"} className="no-underline text-slate-50" >Consultation</Link>
+                                </Button>
+                            </div>
+                        </NavbarItem>
+                    }
+                    {authState.roles === "EMPLOYER" &&
+                        <NavbarItem>
+                            <div className="flex flex-wrap gap-4 items-center">
+                                <Button className="text-slate-50" variant="light">
+                                    <Link to={"/employer/creeDossie"} className="no-underline text-slate-50" >Ajouter dossier</Link>
+                                </Button>
+                            </div>
+                        </NavbarItem>
+                    }
+                    {authState.roles === "EMPLOYER" &&
+                        <NavbarItem>
+                            <div className="flex flex-wrap gap-4 items-center h-screen">
+                                <Button className="text-slate-50" variant="light">
+                                    <Link to={"/employer/supprimer"} className="no-underline text-slate-50" >Supprimer</Link>
+                                </Button>
+                            </div>
+                        </NavbarItem>
+                    }
                 </NavbarContent>
                 <NavbarContent justify="end">
                     <NavbarItem>
