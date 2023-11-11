@@ -10,7 +10,6 @@ import SupprimerDossier from "./Components/Employer/SupprimerDossier";
 import {FaireConsultation} from "./Components/Medecin/FaireConsultation";
 import ModifierDossier from "./Components/Medecin/ModifierDossier";
 import {Consultation} from "./Components/Patient/Consultation";
-import CreeDossier from "./Components/Employer/CreeDossier";
 import MenuEmployer from "./Components/Employer/MenuEmployer";
 import MenuMedecin from "./Components/Medecin/MenuMedecin";
 import MenuPatient from "./Components/Patient/MenuPatient";
@@ -18,6 +17,7 @@ import ConsulterDossier from "./Components/Medecin/ConsulterDossier";
 import NotAuthorized from "./Components/protected/NotAuthorized";
 import ProtectedRoute from "./Components/protected/ProtectedRoute";
 import ProtectedByRoleRoute from "./Components/protected/ProtectedByRoleRoute";
+import CreeDossier from "./Components/Employer/creeDossier";
 
 function App() {
     const authState = useAuthState();
@@ -44,7 +44,7 @@ function App() {
                         } />
                         <Route path="creeDossie" element={
                             <ProtectedByRoleRoute role={"EMPLOYER"}>
-                                <CreeDossier />
+                                < CreeDossier/>
                             </ProtectedByRoleRoute>
                             } />
                         <Route path="supprimer" element={
