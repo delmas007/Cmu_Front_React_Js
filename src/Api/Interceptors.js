@@ -12,7 +12,7 @@ export function useHttpClient(token){
     http.interceptors.request.use((request)=>{
         console.log("**** request intercept *****");
         console.log(request);
-        request.headers.Authorization=`Bearer ${token};`
+        request.headers.Authorization=`Bearer ${token}`;
         console.log(request.headers)
         return request;
     },(err)=>{
