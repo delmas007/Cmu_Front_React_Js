@@ -16,12 +16,14 @@ const CreeDossier = () => {
         dataForm.feminin = false;
         dataForm.enceinte = false;
         console.log(dataForm)
-        dossier.creeDossier(dataForm)
+        dossier.creeDossier(dataForm,"e3c02ffa-a59d-4b82-b2c1-9300d98196a0")
             .then(resp =>{
                 console.log(resp.data +"reussite")
             })
             .catch(err => {
                 console.log(err)
+                console.error('AxiosError:', err);
+                console.error('Response Data:', err.response.data);
             })
     }
 

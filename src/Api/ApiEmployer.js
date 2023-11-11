@@ -5,8 +5,8 @@ export function employerApi(http){
         supprimerDossier : (numeroCmu)=>{
             return http.delete(`/supprimer?numeroCmu=${numeroCmu}`)
         },
-        creeDossier : (dossier)=>{
-            return http.post(`/creeDossier`,dossier)
+        creeDossier : (dossier,id)=>{
+            return http.post(`/creeDossier?id=${id}`,dossier)
         }
     }
 }
