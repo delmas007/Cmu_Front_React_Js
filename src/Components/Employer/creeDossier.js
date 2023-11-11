@@ -12,19 +12,25 @@ const CreeDossier = () => {
     const dossier = employerApi(httpClient);
 
     const submit = (dataForm)=>{
-        dataForm.masculin = true;
-        dataForm.feminin = false;
-        dataForm.enceinte = false;
         console.log(dataForm)
-        dossier.creeDossier(dataForm,"e3c02ffa-a59d-4b82-b2c1-9300d98196a0")
-            .then(resp =>{
-                console.log(resp.data +"reussite")
-            })
-            .catch(err => {
-                console.log(err)
-                console.error('AxiosError:', err);
-                console.error('Response Data:', err.response.data);
-            })
+        const { id, ...rest } = dataForm;
+        rest.masculin === "on" ? rest.masculin = true : rest.masculin = false;
+        rest.masculin === "on" ? rest.feminin = true : rest.feminin = false;
+        rest.masculin === "on" ? rest.enceinte = true : rest.enceinte = false;
+        // dataForm.masculin = true;
+        // dataForm.feminin = false;
+        // dataForm.enceinte = false;
+        console.log(id)
+        console.log(rest)
+        // dossier.creeDossier(dataForm,id)
+        //     .then(resp =>{
+        //         console.log(resp.data +"reussite")
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //         console.error('AxiosError:', err);
+        //         console.error('Response Data:', err.response.data);
+        //     })
     }
 
 
@@ -35,11 +41,15 @@ const CreeDossier = () => {
                 <form onClick={handleSubmit(submit)}>
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
+                            <label className="text-white dark:text-gray-200" form="username">identifiant</label>
+                            <input id="username" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                                   {...register("id", {required:"veiller rentrer un identifiant"})}/>
+                        </div>
+                        <div>
                             <label className="text-white dark:text-gray-200" form="username">Ville</label>
                             <input id="username" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                                    {...register("ville", {required:"veiller rentrer une ville"})}/>
                         </div>
-
                         <div>
                             <label className="text-white dark:text-gray-200" form="emailAddress">Age</label>
                             <input id="emailAddress" type="number" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
