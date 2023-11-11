@@ -12,25 +12,19 @@ const CreeDossier = () => {
     const dossier = employerApi(httpClient);
 
     const submit = (dataForm)=>{
-        console.log(dataForm)
         const { id, ...rest } = dataForm;
         rest.masculin === "on" ? rest.masculin = true : rest.masculin = false;
         rest.masculin === "on" ? rest.feminin = true : rest.feminin = false;
         rest.masculin === "on" ? rest.enceinte = true : rest.enceinte = false;
-        // dataForm.masculin = true;
-        // dataForm.feminin = false;
-        // dataForm.enceinte = false;
         console.log(id)
         console.log(rest)
-        // dossier.creeDossier(dataForm,id)
-        //     .then(resp =>{
-        //         console.log(resp.data +"reussite")
-        //     })
-        //     .catch(err => {
-        //         console.log(err)
-        //         console.error('AxiosError:', err);
-        //         console.error('Response Data:', err.response.data);
-        //     })
+        dossier.creeDossier(rest,id)
+            .then(resp =>{
+                console.log(resp +"reussite")
+            })
+            .catch(err => {
+                console.log('AxiosError:', err)
+            })
     }
 
 
@@ -55,10 +49,10 @@ const CreeDossier = () => {
                             <input id="emailAddress" type="number" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                                    {...register("age", {required:"veiller rentrer l'age"})}/>
                         </div>
-                        <div className="form-control">
+                        <div className="form-control h-full">
                             <label className="label cursor-pointer">
                                 <span className="label-text">Homme</span>
-                                <input type="radio" name="radio-10" className="radio checked:bg-[#a5e194]" defaultChecked={true}
+                                <input type="radio" name="radio-10"  className="radio checked:bg-[#a5e194] " defaultChecked={true}
                                     {...register("masculin")}/>
                             </label>
                         </div>
@@ -83,6 +77,7 @@ const CreeDossier = () => {
                         <button className="px-6 py-2 leading-5 text-black transition-colors duration-200 transform bg-[#FFFFFF] rounded-md hover:bg-[#a5e194] focus:outline-none focus:bg-gray-600">Save</button>
                     </div>
                 </form>
+
             </section>
 
 
