@@ -6,6 +6,12 @@ import {employerApi} from "../../Api/ApiEmployer";
 
 
 const CreeDossier = () => {
+    const [alertState, setAlertState] = useState({
+        show : false,
+        title:"",
+        message:"",
+        close : handleCloseModal
+    });
     const {register,handleSubmit,formState:{errors}}=useForm()
     const [authState,setAuthState] = useContext(AuthenticationContext);
     let httpClient = useHttpClient(authState.token)
@@ -20,7 +26,11 @@ const CreeDossier = () => {
         console.log(rest)
         dossier.creeDossier(rest,id)
             .then(resp =>{
-                console.log(resp +"reussite")
+                setAlertState({
+                    ...alertState, show: true,
+                    message: JSON.stringify(resp.data),
+                    title: "Product saved successfully"
+                })
             })
             .catch(err => {
                 console.log('AxiosError:', err)
@@ -89,7 +99,14 @@ const CreeDossier = () => {
                 </form>
 
             </section>
+            <CustomModalAlert
+                show={alertState.show}
+                close={alertState.close}
+                messsage={alertState.message}
+                title={alertState.title}
+            >
 
+            </CustomModalAlert>
 
         </>
     )
