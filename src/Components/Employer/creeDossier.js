@@ -3,6 +3,7 @@ import {useContext} from "react";
 import {AuthenticationContext} from "../../Context/Context";
 import {useHttpClient} from "../../Api/Interceptors";
 import {employerApi} from "../../Api/ApiEmployer";
+import CustomModalAlert from "../Modal/CustomModalAlert";
 
 
 const CreeDossier = () => {
@@ -17,6 +18,9 @@ const CreeDossier = () => {
     let httpClient = useHttpClient(authState.token)
     const dossier = employerApi(httpClient);
 
+    function handleCloseModal(){
+        setAlertState({...alertState, show: false});
+    }
     const submit = (dataForm)=>{
         const { id, ...rest } = dataForm;
         rest.masculin === "on" ? rest.masculin = true : rest.masculin = false;
@@ -29,7 +33,7 @@ const CreeDossier = () => {
                 setAlertState({
                     ...alertState, show: true,
                     message: JSON.stringify(resp.data),
-                    title: "Product saved successfully"
+                    title: "Dossier Cree"
                 })
             })
             .catch(err => {
