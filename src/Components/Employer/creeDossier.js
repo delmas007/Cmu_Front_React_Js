@@ -43,8 +43,8 @@ const CreeDossier = () => {
 
 
     return (
-        <>
-            <section className="max-w-4xl p-6 mx-auto bg-[#a5e194] rounded-md shadow-md dark:bg-[#a5e194] my-20 mb-[280px]">
+        <div className={"h-screen"}>
+            <section className="max-w-4xl p-6 mx-auto bg-[#a5e194] rounded-md shadow-md dark:bg-[#a5e194] my-20 ">
                 <h1 className="text-xl font-bold text-white capitalize dark:text-white">Dossier Patient</h1>
                 <form onSubmit={handleSubmit(submit)}>
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3">
@@ -112,7 +112,7 @@ const CreeDossier = () => {
 
             </CustomModalAlert>
 
-        </>
+        </div>
     )
 }
 export default CreeDossier
