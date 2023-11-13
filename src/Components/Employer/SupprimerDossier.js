@@ -3,6 +3,7 @@ import {useContext, useState} from "react";
 import {AuthenticationContext} from "../../Context/Context";
 import {useHttpClient} from "../../Api/Interceptors";
 import {employerApi} from "../../Api/ApiEmployer";
+import SupModal from "../Modal/SupModal";
 
 const SupprimerDossier = () =>{
     const {register,handleSubmit,formState:{errors}}=useForm()
@@ -12,15 +13,21 @@ const SupprimerDossier = () =>{
     const [alertState, setAlertState] = useState({
         show : false,
         title:"",
+        message:"",
         close : handleCloseModal
     });
     const supp = (dataForm)=>{
-        dossier.supprimerDossier(dataForm)
+        console.log(dataForm.numeroCmu)
+        dossier.supprimerDossier(dataForm.numeroCmu)
             .then(resp=>{
                 setAlertState({
                     ...alertState, show: true,
+                    message: JSON.stringify(resp.data),
                     title: "Supprimer dossier"
                 })
+            })
+            .catch(err => {
+                console.log('AxiosError:', err)
             })
     }
     function handleCloseModal(){
@@ -49,7 +56,7 @@ const SupprimerDossier = () =>{
                                     {...register("numeroCmu", {required:"Veillez entrer le numero cmu"})}/>
                             </div>
                             <span className={"text-danger"}>
-                            {errors.numeroCmu.message}
+                            {errors.numeroCmu?.message}
                           </span>
                         </div>
 
@@ -59,13 +66,20 @@ const SupprimerDossier = () =>{
                                 <button
                                     className="shadow bg-[#dddada] hover:bg-[#a5e194] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                                     type="button">
-                                    Entrer
+                                    Supprimer
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+            <SupModal
+                show={alertState.show}
+                close={alertState.close}
+                title={alertState.title}
+            >
+
+            </SupModal>
         </>
     )
 }
