@@ -55,21 +55,20 @@ const SupprimerDossier = () =>{
                                     id="inline-full-name" type="text" placeholder={"52bfd7cf-a451-4779-8b10-b47db12cdc3f"}
                                     {...register("numeroCmu", {required:"Veillez entrer le numero cmu"})}/>
                             </div>
-                            <span className={"text-danger"}>
-                            {errors.numeroCmu?.message}
-                          </span>
                         </div>
 
                         <div className="md:flex md:items-center">
                             <div className="md:w-1/3"></div>
                             <div className="md:w-2/3">
                                 <button
-                                    className="shadow bg-[#dddada] hover:bg-[#a5e194] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                                    type="button">
+                                    className="shadow bg-[#dddada] hover:bg-[#a5e194] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
                                     Supprimer
                                 </button>
                             </div>
                         </div>
+                        <span className={"text-danger ms-20"}>
+                            {errors.numeroCmu?.message}
+                          </span>
                     </form>
                 </div>
             </div>
