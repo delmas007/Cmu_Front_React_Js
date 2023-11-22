@@ -16,6 +16,8 @@ const SupprimerDossier = () =>{
         message:"",
         close : handleCloseModal
     });
+    const [error, setError] = useState(false);
+    const [message, setMessage] = useState("");
     const supp = (dataForm)=>{
         console.log(dataForm.numeroCmu)
         dossier.supprimerDossier(dataForm.numeroCmu)
@@ -25,9 +27,12 @@ const SupprimerDossier = () =>{
                     message: JSON.stringify(resp.data),
                     title: "Supprimer dossier"
                 })
+                setError(false);
             })
             .catch(err => {
                 console.log('AxiosError:', err)
+                setError(true);
+                setMessage(err.response.data.message);
             })
     }
     function handleCloseModal(){
@@ -66,8 +71,9 @@ const SupprimerDossier = () =>{
                                 </button>
                             </div>
                         </div>
-                        <span className={"text-danger ms-20"}>
-                            {errors.numeroCmu?.message}
+                        <span className={"text-danger "}>
+                            {errors.numeroCmu?.message}<br/>
+                            { error ? message : ""}
                           </span>
                     </form>
                 </div>

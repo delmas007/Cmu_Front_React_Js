@@ -25,7 +25,7 @@ export function useHttpClient(token){
         return response
     },(err)=>{
         console.log(err);
-        Promise.reject(err);
+        return Promise.reject(err);
     });
     return http;
 }
